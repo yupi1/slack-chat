@@ -25,11 +25,11 @@ app.post('/users', (reg, res) => {
       name: username
     })
     .then(() => res.sendStatus(201))
-    .catch(error => {
-      if (error.error_type === 'services/chatkit/user_already_exists') {
+    .catch(err => {
+      if (err.error === 'services/chatkit/user_already_exists') {
         res.sendStatus(200)
       } else {
-        res.status(error.status).json(error)
+        res.status(err.status).json(err)
       }
     })
 });
